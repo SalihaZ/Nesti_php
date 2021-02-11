@@ -1,0 +1,8 @@
+RewriteEngine on
+# RewriteRule ^recipe$                          index.php?loc=recipe [L]
+# RewriteRule ^connexion$                       index.php?loc=connexion [L]
+# RewriteRule ^(article|statistic)$         index.php?loc=$1 [L]  
+RewriteRule ^([a-z]+)$                     index.php?loc=$1 [L]
+# RewriteRule ^recipe\/edit                   index.php?loc=recipe&action=edit [L]
+RewriteRule ^([a-z]+)\/([a-z]+)$            index.php?loc=$1&action=$2 [L]
+RewriteRule ^([a-z]+)\/([a-z]+)\/([0-9]+)$    index.php?loc=$1&action=$2&id=$3 [L]
