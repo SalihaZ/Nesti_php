@@ -8,7 +8,7 @@ class ModelRecipe {
        
         $pdo=Connection::getPDO();
 
-        $sql="SELECT id_recipe, `name` from recipe"; # Attention aux injections sql faut utiliser les requetes sql
+        $sql="SELECT id_recipe, `name` from recipe"; # Attention aux injections sql faut utiliser les requetes sql préparées
         $result= $pdo->query($sql);
 
         if($result){

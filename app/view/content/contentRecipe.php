@@ -14,14 +14,14 @@
 <div class="main">
   <h1 class="heading" >Recettes</h1>
   <!-- search box -->
-  
+
   <form class="form-inline my-2 my-lg-0">
      <input type="image" id="img" src="./public/images/search-svg.png" alt="">
       <input class="form-control mr-sm-2" type="search"  aria-label="Search" id="search">
   </form>
   <a id= "button" type="button" class="btn btn-outline-secondary" href="<?=BASE_URL?>recipe/create"> <img src="./public/images/create-svg.png" alt=""> Ajouter</a>
-  
-  
+
+
     <div class="table-responsive-sm">
   <table class="table">
   <thead>
@@ -37,28 +37,32 @@
   </thead>
   <tbody>
   <?php
-  /**
-  * @var Recipe $recipe
-  */
-foreach($arrayRecipe as $recipe){
-  ?>
+/**
+ * @var Recipe $recipe
+ */
+foreach ($array_recipe as $recipe) {
+    ?>
      <tr>
-     
-      <td><?= $recipe->getIdRecipe();?></td>
-      <td><?= $recipe->getName(); ?></td>
-      <td>4</td>
-      <td>4</td>
-      <td>35min</td>
-      <td>Zanoni</td>
-      <td><a href="<?=BASE_URL;?>recipe/edit/<?= $recipe->getIdRecipe();?>">Modifier</a> <br> <a href="<?=BASE_URL;?>recipe/delete/1">Supprimer</a> </td>
+
+      <td><?=$recipe->getIdRecipe();?></td>
+      <td><?=$recipe->getName();?></td>
+      <td><?=$recipe->getDifficulty();?></td>
+      <td><?=$recipe->getNumberPeople();?></td>
+      <td><?=$recipe->getTime();?></td>
+      <td><?=$recipe->getIdChef();?></td>
+      <td>
+      <a href="<?=BASE_URL;?>recipe/edit/<?=$recipe->getIdRecipe();?>">Modifier</a>
+      <br>
+      <a href="<?=BASE_URL;?>recipe/delete/1">Supprimer</a>
+      </td>
 
     </tr>
  <?php
 } // fin du foreach
-  ?>
+?>
 <!--
     <tr>
-      
+
       <td>2</td>
       <td>Mousse au chocolat</td>
       <td>2</td>
@@ -70,7 +74,7 @@ foreach($arrayRecipe as $recipe){
 
     </tr>
     <tr>
-      
+
       <td>3</td>
       <td>Eclaire au café</td>
       <td>4</td>
