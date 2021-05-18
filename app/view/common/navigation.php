@@ -1,30 +1,42 @@
+<?php
+/**
+ * @var string $loc
+ */
+
+?>
 <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Nesti partie administrative</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+  
+  
+      <div class="collapse navbar-collapse justify-content-around" id="navbarResponsive">
         <ul class="navbar-nav mx-auto">
         
-          <li class="nav-item <?= ($loc=='recipe')? 'active':''; ?> px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="index.php?loc=recipe">Recette
-              <span class="sr-only">(current)</span>
+          <li class="nav-item menu <?= ($loc=='recipe')? 'active':''; ?> px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="<?=BASE_URL ?>recipe"> <button class="btn" id="recipe"><i class="fas fa-clipboard-list"></i> Recettes</button> 
+              
             </a>
           </li>
-          <li class="nav-item <?= ($loc=='article')? 'active':''; ?> px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="index.php?loc=article">Article</a>
+          <li class="nav-item menu <?= ($loc=='article')? 'active':''; ?> px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="article"> <button class="btn"> <i class="fas fa-utensils"></i> Articles</button> </a>
           </li>
-          <li class="nav-item <?= ($loc=='user')? 'active':''; ?>px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="index.php?loc=user">Utilisateur</a>
+          <li class="nav-item menu <?= ($loc=='user')? 'active':''; ?>px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="<?=BASE_URL ?>user"> <button class="btn"> <i class="fas fa-users"></i> Utilisateurs</button> </a>
           </li>
-          <li class="nav-item <?= ($loc=='statistic')? 'active':''; ?>px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="index.php?loc=statistic">Statistique</a>
+          <li class="nav-item menu <?= ($loc=='statistic')? 'active':''; ?>px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="<?=BASE_URL ?>statistic"> <button class="btn" class="navbar-toggler" type="button"data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><i class="far fa-chart-bar"></i> Statistiques</button> </a>
+          </li>
+          <li class="nav-item  <?= ($loc=='statistic')? 'active':''; ?>px-lg-4">
+            <a class=" session  text-expanded" href="<?=BASE_URL ?>profile"> <i class="fas fa-user-circle"></i> Profile </a>
           </li>
           <li class="nav-item <?= ($loc=='deconnection')? 'active':''; ?>px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="index.php?loc=deconnection">Deconnexion</a>
+            <a class=" session  text-expanded" href="<?=BASE_URL ?>logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+            <i class="far fa-sign-out"></i>
+          </li>
+          <li class="nav-item <?= ($loc=='deconnection')? 'active':''; ?>px-lg-4">
+            <a class=" session  text-expanded" href="<?=BASE_URL ?>connexion"><i class="fas fa-sign-out-alt"></i> Connexion</a>
+            <i class="far fa-sign-out"></i>
           </li>
         </ul>
       </div>
-    </div>
+    
   </nav>
+  

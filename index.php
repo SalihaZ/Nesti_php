@@ -1,43 +1,87 @@
 
 <?php
-include('app/config.php');
+session_start(); // obligatoire pour acceder au tableau global
+
+include 'app/loader.php';
+
 $loc = filter_input(INPUT_GET, "loc");
-$action  = filter_input(INPUT_GET, "action");
-//controlleur de session >>
-//include('app/controllerSession.php');//est ce que le user est déjà connectée ou pas
+
+if (!$loc) {
+    $loc = "recipe";
+
+}
+
+$action = filter_input(INPUT_GET, "action");
+
+$mySession = new Session();
+
+if ($mySession->isConnectUser()) {
+
+    if ($loc == 'connexion') {
+        header('Location:' . BASE_URL . 'recipe');
+        die();
+    }
+
+} else {
+
+   
+    if ($loc != "connexion") {
+
+        header('Location:' . BASE_URL . 'connexion');
+        die();
+    }
+}
 
 //include('app/');
+$file = PATH_CTRL . 'control';
 switch ($loc) {
+
     case 'recipe':
-      include('app/controller/controlRecipe.php');
+        $file .= 'Recipe.php';
+        //include('app/controller/controlRecipe.php');
         break;
     case 'article':
-      include('app/controller/controlArticle.php');
+        $file .= 'Article.php';
+        //include('app/controller/controlArticle.php');
         break;
 
-      case 'user':
-      include('app/controller/controlUser.php');
+    case 'user':
+        $file .= 'User.php';
+        //include('app/controller/controlUser.php');
         break;
 
-      case 'statistic':
-      include('app/controller/controlStatistic.php');
+    case 'statistic':
+        $file .= 'Statistic.php';
+        // include('app/controller/controlStatistic.php');
         break;
 
-      case 'connexion':
-      include('app/controller/controlConnexion.php');
+    case 'connexion':
+        $file .= 'Connexion.php';
+        //include('app/controller/controlConnexion.php');
         break;
 
-      case 'session':
-      include('app/controller/controlSession.php');
+    case 'logout':
+        $file .= 'Deconnexion.php';
+        //include 'app/controller/controlDeconnexion.php';
+        break;
+    case 'profile':
+        $file .= 'Profile.php';
+        //include 'app/controller/controlProfile.php';
         break;
 
-      case 'deconnexion':
-      include('app/controller/controlDeconnexion.php');
+    default:
+        header("Location:" . BASE_URL . "/public/error/error404.html");
+        die();
         break;
+};
 
-    default: 
-    include('public/error/error404.html');
-        break;
+include $file;
+
+include PATH_COMMON . 'template.php';
+if ($mySession->isConnectUser()) {
+    echo ('Je suis connecté');
+} else {
+    echo ('je ne suis pas connecté');
 }
-include('app/view/common/template.php');
-  ?>
+
+?>

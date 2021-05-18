@@ -1,6 +1,6 @@
 <?php
-include('app/entity/Article.php');
-$model = new Article ();
+
+$model = new ModelArticle ();
 $article = $model -> readAll(); 
 
 var_dump($article);

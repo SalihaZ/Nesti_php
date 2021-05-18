@@ -1,33 +1,45 @@
 
 <?php
-
+$file = PATH_VIEW . 'content';
+/**
+ * @var string $loc
+ * @var string $action
+ */
 switch ($loc) {
     case 'recipe':
 
         switch ($action) {
             case 'edit':
-                include(PATH_VIEW. "/contentRecipeEdit.php");
+                $file .= 'RecipeEdit.php'; // $file=$file. equiv à $file.=
                 break;
             case 'create':
-                include(PATH_VIEW. "/contentRecipeCreate.php");
+                $file .= "RecipeCreate.php";
                 break;
 
             default:
-                include(PATH_VIEW."/contentRecipe.php");
+                $file .= "Recipe.php";
                 break;
         }
+        break;
     case 'article':
-        include(PATH_VIEW."/contentArticle.php");
+        $file .= "Article.php";
         break;
     case 'user':
-        include(PATH_VIEW."/contentUser.php");
+        $file .= "User.php";
         break;
     case 'statistic':
-        include(PATH_VIEW."/ContentStatistic.php");
+        $file .= "Statistic.php";
+        break;
+    case 'deconnection': case 'connexion':
+        $file .= "Session.php";
+        break;
+    case 'profile':
+        $file .= "Profile.php";
         break;
     default:
-        header("Location:".BASE_URL."/public/error/error404.html");
+
+        include 'public/error/error404.html';
         break;
-    }
-      
-  ?>
+}
+include $file;
+?>
