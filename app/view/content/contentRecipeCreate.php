@@ -2,7 +2,7 @@
 <h2>Creation</h2>
 <form method= "POST">
 </div> 
-    <label for="recipename" class="col-4 col-form-label">Nom de la recette</label><br>
+    <label for="recipeName" class="col-4 col-form-label">Nom de la recette</label><br>
     <input id="recipeName" name="name_recipe" placeholder="Nom de la recette" type="text"><br>
     <label for="recipeAuthor" class="col-4 col-form-label">Auteur de la recette</label>
     <input id="recipeAuthor" name="Id_chef" placeholder="Nom de l'auteur" type="text"><br>

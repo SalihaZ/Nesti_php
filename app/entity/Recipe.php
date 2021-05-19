@@ -2,15 +2,12 @@
 class Recipe{
 
     private $name;
-    private $id_recipe; // faire correspondre les attributs au champs de la BDD . Remplacer par un alias
+    private $id_recipe; 
     private $creation_date;
     private $difficulty;
     private $time;
     private $number_people;
     private $id_chef;
-
-   
-    // Ajouter les attributs 
 
 
     /**

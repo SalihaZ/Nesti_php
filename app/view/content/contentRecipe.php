@@ -1,18 +1,8 @@
-
-
-
-<?php
-//foreach( $recipe as $r){
-//   echo "<p>". $r ."</p>";
-
-//}
-?>
-
 <html>
 <body>
 
 <div class="main">
-  <h1 class="heading" >Recettes</h1>
+  <h1 class="heading">Recettes</h1>
   <!-- search box -->
 
   <form class="form-inline my-2 my-lg-0">
@@ -35,13 +25,13 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
-  <tbody>
-  <?php
-/**
- * @var Recipe $recipe
- */
-foreach ($array_recipe as $recipe) {
-    ?>
+<tbody>
+<?php
+  /**
+  * @var Recipe $recipe
+  */
+  foreach ($array_recipe as $recipe) {
+  ?>
      <tr>
 
       <td><?=$recipe->getIdRecipe();?></td>
@@ -57,9 +47,9 @@ foreach ($array_recipe as $recipe) {
       </td>
 
     </tr>
- <?php
+  <?php
 } // fin du foreach
-?>
+  ?>
 <!--
     <tr>
 
