@@ -11,8 +11,103 @@ $action = filter_input(INPUT_GET, "action"); #"action"= c'est l'information qui 
 switch ($action) {
 
     case 'create':
-        echo ("test");
+        // Rechercher le nom de l'auteur ( la personne qui est connecté). 
+        $session = new Session();
+        $id_author = $session->getIdUser();
+        // TODO faire une requete pour afficher le nom de l'utilisateur. 
+        // TODO Vérifier que l'utilisateur est un chef sinon il n'a pas le droit
+        if($id_author <= 0){
+            // S'il n'est connecté 
+            // redirection vers la page de connexion
+            header('Location:' . BASE_URL . 'connexion');
+            die();
+        }
 
+        $post_submit = filter_input(INPUT_POST, "submit");
+        if($post_submit == 'ok'){
+           
+            try{
+                echo 'Le formulaire a été envoyé';
+            // récupérer les données
+            $name = filter_input(INPUT_POST, 'name_recipe');
+            $difficulty = filter_input(INPUT_POST, 'difficulty');
+            $time= filter_input(INPUT_POST, 'time');
+            $number_people= filter_input(INPUT_POST, 'number_people');
+            
+            $recipe = new Recipe();  
+            $recipe->setIdChef($id_author);
+            // les vérifiés
+            if($name){
+                // Exemple : verifions la longueur 
+                if(strlen($name) > 120){
+                    throw new Exception("nom de recette trop long");
+                }else{
+                    // ok 
+                    $recipe->setName($name);
+                }
+            }else{
+                throw new Exception("Donner un nom à la recette");
+            }
+            if($difficulty){
+                $difficulty = (int)$difficulty;
+                if(is_int($difficulty) && $difficulty <= 5 && $difficulty >= 0 ){
+                    // ok 
+                    $recipe->setDifficulty($difficulty);
+                }else{
+                    throw new Exception("La difficulté doit être un nombre compris entre 0 et 5");     
+                }
+            }else{
+                throw new Exception("La difficulté est obligatoire");
+                
+            }
+            if($time){
+                $time=(int)$time;
+                if(is_int($time) && $time>0 && $time <=5000) {
+                
+                    $recipe-> setTime($time);
+                }else{
+                    throw new Exception ("La durée doit être comprise entre 1 et 5000 minutes");
+                }
+            }else{
+                throw new Exception ("Le champ temps de préparation est obligatoire");
+            }
+
+            if($number_people){
+                $number_people=(int)$number_people;
+                if(is_int($number_people) && $number_people>=1 && $number_people <=999){
+                    $recipe-> setNumberPeople($number_people);
+                }else{
+                    throw new Exception ("Le nombre de personnes doit être compris entre 1 et 999");
+                }
+            }else{
+                throw new Exception("Vous devez remplir le nombre de personnes");
+            }
+
+            }catch(Exception $e){
+                $message =   $e->getMessage();
+               
+            }
+            if(!isset($message)){ 
+                // S'il n'existe pas equivaux à isset($message)==false oubien faire un falg
+                // Insertion que s'il n'y a pas d'erruer, que si la recette valide
+                try{
+                    $id_recipe = $model->insert($recipe);
+                    $success = "Recette numero ". $id_recipe. " a bien été créée"; 
+                    
+                }catch(PDOException $e){
+                    $message = $e->getMessage();
+                }
+    
+              
+            }
+            
+
+
+            // Faire un insert 
+            // Soit un message : success ou error 
+        }else{
+            echo 'Pas de formulaire envoyé';
+        }
         break;
 
     case 'edit':

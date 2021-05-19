@@ -38,7 +38,12 @@
 if(/*isset($loc) &&*/ $loc!="connexion"){
 include PATH_COMMON. 'navigation.php'; //== pour tester si c'est égal
 
-
+if(isset($message)){
+  echo '<p class="alert alert-danger">'.$message.'</p>';
+}
+if(isset($success)){
+  echo '<p class="alert alert-success">'.$success.'</p>';
+}
 } 
 
 //include 'app/view/common/navigation.php'; A enlever!

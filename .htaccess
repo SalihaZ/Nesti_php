@@ -4,5 +4,12 @@ RewriteEngine on
 # RewriteRule ^(article|statistic)$         index.php?loc=$1 [L]  
 RewriteRule ^([a-z]+)$                     index.php?loc=$1 [L]
 RewriteRule ^([a-z]+)\/([a-z]+)\/([0-9]+)$    index.php?loc=$1&action=$2&id=$3 [L]
-RewriteRule ^([a-z]+)\/([a-z]+)$            index.php?loc=$1&action=$2 [L]
+RewriteRule ^([a-z]+)\/([a-z]+)$            index.php?loc=$1&action=$2 [L] 
 # RewriteRule ^recipe\/edit                   index.php?loc=recipe&action=edit [L]
+
+
+
+# [a-z]+ : paramètre n°1 on accept que les lettres entre a et z correspond à $1
+# s'il est en première position. dans notre cas c'est la variable loc :index.php?loc=$1
+# [0-9]+ paramètre correspond à un chiffre ex. l'id. 
+# Dans notre cas l'id est en 3ème position :  index.php?loc=$1&action=$2&id=$3 

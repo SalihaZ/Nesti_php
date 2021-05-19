@@ -3,7 +3,7 @@
 <form method= "POST">
 </div> 
     <label for="recipename" class="col-4 col-form-label">Nom de la recette</label><br>
-    <input id="recipeName" name="Id_recipe" placeholder="Nom de la recette" type="text"><br>
+    <input id="recipeName" name="name_recipe" placeholder="Nom de la recette" type="text"><br>
     <label for="recipeAuthor" class="col-4 col-form-label">Auteur de la recette</label>
     <input id="recipeAuthor" name="Id_chef" placeholder="Nom de l'auteur" type="text"><br>
     <label for="difficulty" class="col-4 col-form-label">Difficulté</label>
@@ -15,7 +15,7 @@
 
 
     <div>
-      <button name="submit" type="submit" class="btn btn-success">Valider</button>
+      <button name="submit" type="submit" value="ok" class="btn btn-success">Valider</button>
       <button name="reset" type="reset" class="btn btn-cancel">Annuler</button>
     </div><br>
 

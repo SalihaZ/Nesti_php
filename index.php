@@ -1,6 +1,8 @@
 
 <?php
 session_start(); // obligatoire pour acceder au tableau global
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 include 'app/loader.php';
 

@@ -3,7 +3,7 @@
 class Session
 {
 
-    public function isConnectUser()
+    public function isConnectUser() //savoir si un user est connect
     {
         $isConnect=false;
         if (isset($_SESSION["idUser"]) && !empty($_SESSION['idUser'])) {
@@ -22,6 +22,15 @@ class Session
     public function disconnectUser(){
     session_unset();
     session_destroy();
+    }
+    
+    public function getIdUser(){
+        if (isset($_SESSION["idUser"]) && !empty($_SESSION['idUser'])) { // vérifier si le tableau php Session  transporte les infos d'une page à l'autre
+            $id = $_SESSION['idUser'];
+        }else{
+            $id = 0;
+        }
+        return $id;
     }
 
 }
