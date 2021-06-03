@@ -7,9 +7,50 @@ private $date_creation;
 private $price;
 private $quantity_by_unit;
 private $type;
+private $user_article_name;
+private $stock;
 //type
 
+/**
+     * Get the  stock of an article
+     */ 
+    public function getStock()
+    {
+        return $this->stock;
+    }
 
+    /**
+     * Set the stock of an article
+     *
+     * @return  self
+     */
+    public function setStock($stock)
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+
+/**
+     * Get the value of User article name
+     */ 
+    public function getUserArticleName()
+    {
+        return $this->user_article_name;
+    }
+
+    /**
+     * Set the value of User article name
+     *
+     * @return  self
+     */
+    public function setUserArticleName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 
  /**
      * Get the value of article name
@@ -131,6 +172,11 @@ private $type;
         return $this;
     }
 
+    public static function checkName($name){
+        // longuer
+        // regex
+        return true;
+    }
 
 }
 

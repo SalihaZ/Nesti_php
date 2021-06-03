@@ -1,24 +1,26 @@
-<h1>Article</h1>
-<h2>Edition</h2>
+<div class="main">
 
-<p>Recette n° <?= $id_article; ?>
-<form method= "POST">
+<h1 class="heading">Articles</h1>
+
+<p>Article n° <?= $id_article; ?>
+<form method= "POST" >
 
 <div>
     <label for="articleName" class="col-4 col-form-label">Nom d'usine de l'article</label><br>
-    <input id="articleName" name="name_article" placeholder="Nom d'usine de l'article" type="text" value="<?= $recipe->getName(); ?>"><br>
+    <input disabled id="articleName" name="name_article" placeholder="Nom d'usine de l'article" type="text" value="<?=$article->getName();?>"><br>
     <label for="userArticleName" class="col-4 col-form-label">Nom de l'article pour l'utilisateur</label>
-    <input id="userArticleName" name="user_artcile" type="text"><br>
+    <input id="userArticleName" name="user_article" type="text" value="<?= $article->getUserArticleName();?>"><br>
     <label for="id" class="col-4 col-form-label">Identifiant</label>
-    <input id="id" name="id" type="text"><br>
+    <input disabled id="id" name="id" type="text"  value="<?=$article->getIdExtern();?>"><br>
     <label for="price" class="col-4 col-form-label">Prix de vente</label>
-    <input id="price" name="price" type="text"><br>
+    <input disabled id="price" name="price" type="text" value="<?=$article->getPrice();?>"><br>
     <label for="stock" class="col-4 col-form-label">Stock</label>
-    <input id="stock" name="stock" type="text"><br>
+    <input disabled id="stock" name="stock" type="text" value="<?=$article->getStock();?>" ><br>
 
     <div>
-      <button name="submit" type="submit" class="btn btn-success">Valider</button>
-      <button name="reset" type="reset" class="btn btn-cancel">Annuler</button>
+      <button name="submit" type="submit" value="send" class="btn btn-success">Valider</button>
+      <button name="delete" type="delete" class="btn btn-danger">Supprimer</button>
     </div><br>
-    
+
+</div>
 </div>

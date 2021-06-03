@@ -15,7 +15,11 @@ Class User{
     private $id_city;
     private $last_connexion;
     private $role;
+//Date de dernière connexion
+// setcookie ( string $name , string $value = "" , int $expires = 0 , string $path = "" , string $domain = "" , bool $secure = false , bool $httponly = false ) : bool
 
+//Signature alternative disponible à partir de PHP 7.3.0 :
+//setcookie ( string $name , string $value = "" , array $options = [] ) : bool
 
  /**
      * Get the value of id_user

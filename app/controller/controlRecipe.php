@@ -110,13 +110,12 @@ switch ($action) {
         }
         break;
 
-    case 'edit':
-        echo (" edition");
-        
+    case 'edit':               
         $id_recipe = filter_input(INPUT_GET, 'id'); // .htaccess
         if($id_recipe > 0){
             $recipe = $model->readOne($id_recipe);
-            //var_dump($recipe);
+            $array_preparation = ['prep 1', 'prep 2', 'prep 3'];//$moedl->readPreparation($id_recipe);
+            var_dump($recipe);
         }else{
             echo 'Error, recette introuvable';
             die;

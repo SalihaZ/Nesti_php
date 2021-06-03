@@ -1,5 +1,4 @@
-<html>
-<body>
+
 
 <div class="main">
   <h1 class="heading">Recettes</h1>
@@ -48,40 +47,12 @@
 
     </tr>
   <?php
-} // fin du foreach
+} 
   ?>
-<!--
-    <tr>
-
-      <td>2</td>
-      <td>Mousse au chocolat</td>
-      <td>2</td>
-      <td>2</td>
-      <td>3h</td>
-      <td>Marx</td>
-      <td><a href="<?=BASE_URL;?>recipe/edit/1">Modifier</a> <br> <a href="<?=BASE_URL;?>recipe/delete/1">Supprimer</a> </td>
 
 
-    </tr>
-    <tr>
-
-      <td>3</td>
-      <td>Eclaire au café</td>
-      <td>4</td>
-      <td>4</td>
-      <td>2h20min</td>
-      <td>Gagnaire</td>
-      <td><a href="<?=BASE_URL;?>recipe/edit/1">Modifier</a> <br> <a href="<?=BASE_URL;?>recipe/delete/1">Supprimer</a> </td>
-
-
-    </tr>
-    -->
   </tbody>
 </table>
-  </table>
+  
 </div>
 </div>
-
-
-</body>
-</html>

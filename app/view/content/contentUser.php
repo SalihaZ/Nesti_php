@@ -1,6 +1,3 @@
-<html>
-<body>
-
 <div class="main">
   <h1 class="heading">Utilisateurs</h1>
   <!-- search box -->
@@ -35,14 +32,14 @@
 ?>
 <tr>
 
-<td><?=$recipe->getIdUser();?></td>
-<td><?=$recipe->getFirstName(). getLastName();?></td>
-<td><?=$recipe->getRole();?></td>
-<td><?=$recipe->getLastConnexion();?></td>
-<td><?=$recipe->getTime();?></td>
-<td><?=$recipe->getState();?></td>
+<td><?=$user->getIdUser();?></td>
+<!--<td><?=$user->getFirstName().getLastName();?></td>-->
+<!--<td><?=$user->getRole();?></td>-->
+<td><?=$user->getLastConnexion();?></td>
+<td><?=$user->getTime();?></td>
+<td><?=$user->getState();?></td>
 <td>
-<a href="<?=BASE_URL;?>user/edit/<?=$recipe->getIdUser();?>">Modifier</a>
+<a href="<?=BASE_URL;?>user/edit/<?=$user->getIdUser();?>">Modifier</a>
 <br>
 <a href="<?=BASE_URL;?>user/delete/1">Supprimer</a>
 </td>
@@ -51,10 +48,3 @@
 <?php
 } // fin du foreach//transaction à mettre en place
 ?>
-
-
-
-
-
-
-  }

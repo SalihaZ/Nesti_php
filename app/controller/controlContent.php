@@ -22,15 +22,41 @@ switch ($loc) {
         }
         break;
     case 'article':
-        $file .= "Article.php";
+        switch ($action) {
+            case 'edit':
+                $file .= 'ArticleEdition.php'; // $file=$file. equiv à $file.=
+                break;
+            case 'import':
+                $file .= "ArticleImport.php";
+                break;
+            case 'order':
+                $file .= "ArticleOrder.php";
+                break;
+            default:
+                $file .= "Article.php";
+                break;
+        }
+
         break;
     case 'user':
-        $file .= "User.php";
+        switch ($action) {
+            case 'edit':
+                $file .= 'UserEdit.php'; // $file=$file. equiv à $file.=
+                break;
+            case 'create':
+                $file .= "UserCreate.php";
+                break;
+
+            default:
+                $file .= "User.php";
+                break;
+        }
+        break;
         break;
     case 'statistic':
         $file .= "Statistic.php";
         break;
-    case 'deconnection': case 'connexion':
+    case 'deconnection':case 'connexion':
         $file .= "Session.php";
         break;
     case 'profile':

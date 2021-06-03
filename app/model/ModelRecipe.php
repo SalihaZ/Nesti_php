@@ -9,7 +9,7 @@ class ModelRecipe
 
         $pdo = Connection::getPDO();
 
-        $sql = "SELECT id_recipe, `name` from recipe"; # Attention aux injections sql faut utiliser les requetes sql préparées
+        $sql = "SELECT id_recipe, `name`, difficulty, `time`, number_people, `state` from recipe"; # Attention aux injections sql faut utiliser les requetes sql préparées
         $result = $pdo->query($sql);
 
         if ($result) {
@@ -26,7 +26,9 @@ class ModelRecipe
     {
 
         $pdo = Connection::getPDO();
-        $sql = "SELECT id_recipe, `name` from recipe WHERE id_recipe = :id";
+        $sql = "SELECT id_recipe, `name`, difficulty, `time`, number_people, recipe.`state`, CONCAT(user.last_name, ' ', user.first_name) as author_name "
+         ." FROM recipe LEFT JOIN user ON user.id_user= recipe.id_chef"
+         ." WHERE id_recipe = :id";
         $sth = $pdo->prepare($sql); // statement : etat intermediaire de la requetes préparée
         $sth->bindParam(':id', $id);
         $result = $sth->execute();
@@ -65,6 +67,12 @@ try{
         
         
 
+    }
+
+
+    public function update(int $id_recipe, Recipe $recipe){
+        // TODO
+        return true;
     }
 
 //une méthode par requête =>
