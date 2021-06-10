@@ -19,8 +19,9 @@
     <input id="time" class="form-control"  name="time" type="text" value="<?=$recipe->getTime();?>"><br>
     <label for="state" class="col-4 col-form-label">Etat</label>
     <select class="form-control col-4" name="state">
-      <option <?=($recipe->getState() == "Unblocked") ? 'selected' : ''?>>Unblocked</option>
-      <option <?=($recipe->getState() == "Blocked") ? 'selected' : ''?> >Blocked</option>
+      <option <?=($recipe->getState() == "a") ? 'selected' : ''?>>Actif</option>
+      <option <?=($recipe->getState() == "b") ? 'selected' : ''?> >Inactif</option>
+      <option <?=($recipe->getState() == "w") ? 'selected' : ''?> >En attente</option>
     </select>
         <br>
         <div class="m-3">

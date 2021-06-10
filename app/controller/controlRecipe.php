@@ -22,7 +22,7 @@ switch ($action) {
             header('Location:' . BASE_URL . 'connexion');
             die();
         }
-
+var_dump($_POST);
         $post_submit = filter_input(INPUT_POST, "submit");
         if($post_submit == 'ok'){
            
@@ -32,11 +32,22 @@ switch ($action) {
             $name = filter_input(INPUT_POST, 'name_recipe');
             $difficulty = filter_input(INPUT_POST, 'difficulty');
             $time= filter_input(INPUT_POST, 'time');
+            $state= filter_input(INPUT_POST, 'state');
             $number_people= filter_input(INPUT_POST, 'number_people');
             
             $recipe = new Recipe();  
             $recipe->setIdChef($id_author);
             // les vérifiés
+            if($state){
+                if($state=="a"||$state=="b"||$state=="w"){
+                    $recipe->setState($state);
+                }else{
+                    throw new Exception("Etat invalide");
+                }
+            }else{
+                throw new Exception("Etat obligatoire");
+
+            }
             if($name){
                 // Exemple : verifions la longueur 
                 if(strlen($name) > 120){
@@ -92,7 +103,9 @@ switch ($action) {
                 // Insertion que s'il n'y a pas d'erruer, que si la recette valide
                 try{
                     $id_recipe = $model->insert($recipe);
-                    $success = "Recette numero ". $id_recipe. " a bien été créée"; 
+                    $success = "Recette numero ". $id_recipe. " a bien été créée";
+                    header('Location:'.BASE_URL."/recipe/edit/".$id_recipe);
+                    exit(); 
                     
                 }catch(PDOException $e){
                     $message = $e->getMessage();
@@ -107,6 +120,11 @@ switch ($action) {
             // Soit un message : success ou error 
         }else{
             echo 'Pas de formulaire envoyé';
+            $model= new ModelUser();
+            $session=new Session();
+            $id_user= $session->getIdUser();
+            $user=$model->readOne($id_user) ;
+            $author=$user->getFirstName()." ".$user->getLastName();
         }
         break;
 
@@ -117,13 +135,25 @@ switch ($action) {
             $array_preparation = ['prep 1', 'prep 2', 'prep 3'];//$moedl->readPreparation($id_recipe);
             var_dump($recipe);
         }else{
-            echo 'Error, recette introuvable';
+            echo 'Erreur, recette introuvable';
             die;
         }
-        
+        //Add ingredient JQuery
+        extract($_POST);
+        if($action)
         break;
         
     case 'delete':
+
+        $id_recipe = filter_input(INPUT_GET, 'id'); // .htaccess
+        if($id_recipe > 0){
+            $recipe = $model->deleteRecipe($id_recipe);
+            $array_preparation = ['prep 1', 'prep 2', 'prep 3'];//$moedl->readPreparation($id_recipe);
+            var_dump($recipe);
+        }else{
+            echo 'Erreur, recette introuvable';
+            die;
+        }
         echo ("recette supprimée");
         die();
 

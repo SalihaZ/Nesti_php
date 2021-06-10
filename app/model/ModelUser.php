@@ -18,6 +18,26 @@ class ModelUser
             $array = [];
         }
 
+
+
         return $array; 
     }
+
+
+    public function readOne($id)
+    {
+        $pdo= Connection::getPDO(); //static : :
+        $sql= "SELECT first_name, last_name from user WHERE id_user=:id"; //requete prparée
+        $sth= $pdo->prepare($sql);
+        $sth->bindParam(':id', $id);
+        $result = $sth->execute();
+        $sth->setFetchMode(PDO::FETCH_CLASS, 'User'); 
+        if($result){
+            $user= $sth->fetch();
+        } else{
+            $user= new User();
+        }
+        return $user;
+    }
+    
 }

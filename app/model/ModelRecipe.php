@@ -47,8 +47,8 @@ class ModelRecipe
 try{
     $pdo = Connection::getPDO();
  //"INSERT INTO recipe (`name`, `difficulty`, `time`, `number_people`, `id_chef` ) VALUES (:n, :d, :t, :np, :idc)";
- $sql = "INSERT INTO `recipe`(`name`,  `difficulty`, `time`, `number_people`, `Id_chef`) 
- VALUES (:n, :d, :t, :np, :idc)";
+ $sql = "INSERT INTO `recipe`(`name`,  `difficulty`, `time`, `number_people`, `Id_chef`, `state`) 
+ VALUES (:n, :d, :t, :np, :idc, :st)";
  $sth = $pdo->prepare($sql);
  $sth->execute(array(
      ':n' => $recipe->getName(),
@@ -56,6 +56,8 @@ try{
      ':t' => $recipe->getTime(),
      ':np' => $recipe->getNumberPeople(),
      ':idc' => $recipe->getIdChef(),
+    ':st' => $recipe->getState(),
+    
      
  ));
  return $pdo->lastInsertId();
@@ -71,10 +73,37 @@ try{
 
 
     public function update(int $id_recipe, Recipe $recipe){
-        // TODO
+    $sql = "UPDATE  `recipe`SET (`name`,  `difficulty`, `time`, `number_people`, `Id_chef`, `state`) 
+    VALUES (:n, :d, :t, :np, :idc, :st)"."WHERE id_recipe = :id";
+    $sth = $pdo->prepare($sql);
+    $sth = $pdo->prepare($sql); // statement : etat intermediaire de la requetes préparée
+    $sth->bindParam(':id', $id);
+    $result = $sth->execute();
+    $sth->setFetchMode(PDO::FETCH_CLASS, 'Recipe'); //
+    if ($result) {
+        $recipe = $sth->fetch();
+    } else {
+        $recipe = new Recipe(); // Recette Vide
+    }
         return true;
     }
 
+
+    public function deletRecipe(int $id_chef, Recipe $recipe){
+        
+        $sql = "DELETE FROM `recipe`"."WHERE id_chef = :id";
+        $sth = $pdo->prepare($sql);
+        $sth = $pdo->prepare($sql); // statement : etat intermediaire de la requetes préparée
+        $sth->bindParam(':id', $id);
+        $result = $sth->execute();
+        $sth->setFetchMode(PDO::FETCH_CLASS, 'Recipe'); //
+        if ($result) {
+            $recipe = $sth->fetch();
+        } else {
+            $recipe = new Recipe(); // Recette Vide
+        }
+            return true;
+    }
 //une méthode par requête =>
 
 }

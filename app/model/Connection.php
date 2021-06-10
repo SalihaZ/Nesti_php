@@ -15,6 +15,7 @@ class Connection{
 
         if(self::$pdo==null){
             self::startConnection();
+
         }
 
         return self::$pdo;
@@ -24,6 +25,7 @@ class Connection{
 static function startConnection(): void{
 
     self::$pdo = new PDO(DSN, USERNAME, PSW,[PDO::ATTR_PERSISTENT=>true]);
+    self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 
 }

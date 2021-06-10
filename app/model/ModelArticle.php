@@ -99,7 +99,7 @@ class ModelArticle
     {
 
         $pdo = Connection::getPDO();
-        $sql = "SELECT price_article(:id, NOW())";
+        $sql = "SELECT price_article(:id, NOW())";//deterministic function
       //  "SELECT MAX(unit_cost)as max_price FROM `lot` WHERE id_extern=:id";
         $sth = $pdo->prepare($sql); // statement : etat intermediaire de la requetes préparée
         $sth->bindParam(':id', $id);
@@ -128,6 +128,8 @@ class ModelArticle
         }
         return $stock;
     }
+
+    public function commandePrice(){}
 
 
 
